@@ -12,14 +12,16 @@ import com.example.android.data.sample.SampleDataProvider;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+{
 
     @SuppressWarnings("FieldCanBeLocal")
     private TextView tvOut;
     private List<DataItem> dataItemArrayList = SampleDataProvider.dataItemArrayList;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 

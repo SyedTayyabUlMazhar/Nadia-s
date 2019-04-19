@@ -21,16 +21,19 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
-public class DataItemAdapter extends RecyclerView.Adapter<DataItemAdapter.ViewHolder>{
+public class DataItemAdapter extends RecyclerView.Adapter<DataItemAdapter.ViewHolder>
+{
 
     public static final String ITEM_ID = "ITEM_ID";
 
-    public static class ViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder
+    {
         public ImageView menuItemImage;
         public TextView menuItemName;
         public View view;
 
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView)
+        {
             super(itemView);
 
             this.menuItemImage = itemView.findViewById(R.id.data_item_imageView);
@@ -42,16 +45,17 @@ public class DataItemAdapter extends RecyclerView.Adapter<DataItemAdapter.ViewHo
     private Context context;
     private List<DataItem> dataItemList;
 
-    public DataItemAdapter (Context context, List<DataItem> items) {
+    public DataItemAdapter(Context context, List<DataItem> items)
+    {
         this.context = context;
         this.dataItemList = items;
     }
 
 
-
     @NonNull
     @Override
-    public DataItemAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public DataItemAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i)
+    {
 
         LayoutInflater layoutInflater = LayoutInflater.from(context);
 
@@ -63,20 +67,25 @@ public class DataItemAdapter extends RecyclerView.Adapter<DataItemAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int i) {
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int i)
+    {
 
         final DataItem dataItem = dataItemList.get(i);
 
         viewHolder.menuItemName.setText(dataItem.getItemName());
-        try {
+        try
+        {
             viewHolder.menuItemImage.setImageDrawable(getDrawableFromAsset(dataItem.getImage()));
-        } catch (IOException e) {
+        } catch (IOException e)
+        {
             e.printStackTrace();
         }
 
-        viewHolder.view.setOnClickListener(new View.OnClickListener() {
+        viewHolder.view.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
 //                Toast.makeText(context, "You touched : " + dataItem.getItemName(), Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(context, DetailActivity.class);
@@ -88,11 +97,13 @@ public class DataItemAdapter extends RecyclerView.Adapter<DataItemAdapter.ViewHo
     }
 
     @Override
-    public int getItemCount() {
+    public int getItemCount()
+    {
         return dataItemList.size();
     }
 
-    private Drawable getDrawableFromAsset(String name) throws IOException {
+    private Drawable getDrawableFromAsset(String name) throws IOException
+    {
         Drawable drawable = null;
 
         InputStream inputStream = context.getResources().getAssets().open(name);

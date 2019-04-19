@@ -6,11 +6,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class SampleDataProvider {
+public class SampleDataProvider
+{
     public static List<DataItem> dataItemArrayList;
     public static HashMap<String, DataItem> dataItemHashMap;
 
-    static {
+    static
+    {
         dataItemArrayList = new ArrayList<>();
         dataItemHashMap = new HashMap<>();
 

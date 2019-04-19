@@ -17,17 +17,21 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DataItemAdapter extends ArrayAdapter<DataItem> {
+public class DataItemAdapter extends ArrayAdapter<DataItem>
+{
     private List<DataItem> dataItemArrayList;
-    public DataItemAdapter(Context context, int resource, List<DataItem> objects) {
+
+    public DataItemAdapter(Context context, int resource, List<DataItem> objects)
+    {
         super(context, resource, objects);
 
         this.dataItemArrayList = objects;
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        if(convertView==null)
+    public View getView(int position, View convertView, ViewGroup parent)
+    {
+        if (convertView == null)
         {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.data_item, null);
         }
@@ -38,9 +42,11 @@ public class DataItemAdapter extends ArrayAdapter<DataItem> {
         TextView itemName = convertView.findViewById(R.id.data_item_textViewItemName);
 
 //        menuItemImage.setImageResource(R.drawable.apple_pie);
-        try {
+        try
+        {
             menuItemImage.setImageDrawable(getDrawableFromAsset(dataItem.getImage()));
-        } catch (IOException e) {
+        } catch (IOException e)
+        {
             e.printStackTrace();
         }
         itemName.setText(dataItem.getItemName());
@@ -48,7 +54,8 @@ public class DataItemAdapter extends ArrayAdapter<DataItem> {
         return convertView;
     }
 
-    private Drawable getDrawableFromAsset(String name) throws IOException {
+    private Drawable getDrawableFromAsset(String name) throws IOException
+    {
         Drawable drawable = null;
 
         InputStream inputStream = getContext().getResources().getAssets().open(name);

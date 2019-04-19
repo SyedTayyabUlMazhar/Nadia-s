@@ -11,11 +11,11 @@
     tools:context="com.example.android.data.MainActivity">
 
     <!--<TextView-->
-        <!--android:id="@+id/out"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="Hello World!"-->
-        <!--style="@style/Base.TextAppearance.AppCompat.Large"/>-->
+    <!--android:id="@+id/out"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="Hello World!"-->
+    <!--style="@style/Base.TextAppearance.AppCompat.Large"/>-->
 
-    <include layout="@layout/content_main"/>
+    <include layout="@layout/content_main" />
 </RelativeLayout>
