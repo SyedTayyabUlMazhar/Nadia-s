@@ -1,6 +1,7 @@
 package com.example.android.data.recyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.android.data.DetailActivity;
 import com.example.android.data.R;
 import com.example.android.data.model.DataItem;
 
@@ -20,6 +22,8 @@ import java.io.InputStream;
 import java.util.List;
 
 public class DataItemAdapter extends RecyclerView.Adapter<DataItemAdapter.ViewHolder>{
+
+    public static final String ITEM_ID = "ITEM_ID";
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
         public ImageView menuItemImage;
@@ -59,7 +63,7 @@ public class DataItemAdapter extends RecyclerView.Adapter<DataItemAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int i) {
 
         final DataItem dataItem = dataItemList.get(i);
 
@@ -73,7 +77,12 @@ public class DataItemAdapter extends RecyclerView.Adapter<DataItemAdapter.ViewHo
         viewHolder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "You touched : " + dataItem.getItemName(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "You touched : " + dataItem.getItemName(), Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(context, DetailActivity.class);
+                intent.putExtra(ITEM_ID, dataItem.getItemId());
+
+                context.startActivity(intent);
             }
         });
     }
