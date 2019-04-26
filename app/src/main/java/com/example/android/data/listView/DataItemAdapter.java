@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.android.data.Helper;
 import com.example.android.data.R;
 import com.example.android.data.model.DataItem;
 
@@ -44,7 +45,7 @@ public class DataItemAdapter extends ArrayAdapter<DataItem>
 //        menuItemImage.setImageResource(R.drawable.apple_pie);
         try
         {
-            menuItemImage.setImageDrawable(getDrawableFromAsset(dataItem.getImage()));
+            menuItemImage.setImageDrawable(Helper.getDrawableFromAsset(dataItem.getImage(), getContext()));
         } catch (IOException e)
         {
             e.printStackTrace();
@@ -54,13 +55,13 @@ public class DataItemAdapter extends ArrayAdapter<DataItem>
         return convertView;
     }
 
-    private Drawable getDrawableFromAsset(String name) throws IOException
-    {
-        Drawable drawable = null;
-
-        InputStream inputStream = getContext().getResources().getAssets().open(name);
-        drawable = Drawable.createFromStream(inputStream, null);
-
-        return drawable;
-    }
+//    private Drawable getDrawableFromAsset(String name) throws IOException
+//    {
+//        Drawable drawable = null;
+//
+//        InputStream inputStream = getContext().getResources().getAssets().open(name);
+//        drawable = Drawable.createFromStream(inputStream, null);
+//
+//        return drawable;
+//    }
 }

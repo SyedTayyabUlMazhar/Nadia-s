@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.android.data.DetailActivity;
+import com.example.android.data.Helper;
 import com.example.android.data.R;
 import com.example.android.data.model.DataItem;
 
@@ -25,6 +26,7 @@ public class DataItemAdapter extends RecyclerView.Adapter<DataItemAdapter.ViewHo
 {
 
     public static final String ITEM_ID = "ITEM_ID";
+    public static final String ITEM = "ITEM";
 
     public static class ViewHolder extends RecyclerView.ViewHolder
     {
@@ -51,7 +53,6 @@ public class DataItemAdapter extends RecyclerView.Adapter<DataItemAdapter.ViewHo
         this.dataItemList = items;
     }
 
-
     @NonNull
     @Override
     public DataItemAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i)
@@ -75,7 +76,7 @@ public class DataItemAdapter extends RecyclerView.Adapter<DataItemAdapter.ViewHo
         viewHolder.menuItemName.setText(dataItem.getItemName());
         try
         {
-            viewHolder.menuItemImage.setImageDrawable(getDrawableFromAsset(dataItem.getImage()));
+            viewHolder.menuItemImage.setImageDrawable(Helper.getDrawableFromAsset(dataItem.getImage(), context));
         } catch (IOException e)
         {
             e.printStackTrace();
@@ -89,7 +90,8 @@ public class DataItemAdapter extends RecyclerView.Adapter<DataItemAdapter.ViewHo
 //                Toast.makeText(context, "You touched : " + dataItem.getItemName(), Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(context, DetailActivity.class);
-                intent.putExtra(ITEM_ID, dataItem.getItemId());
+//                intent.putExtra(ITEM_ID, dataItem.getItemId());
+                intent.putExtra(ITEM, dataItem);
 
                 context.startActivity(intent);
             }
@@ -102,15 +104,15 @@ public class DataItemAdapter extends RecyclerView.Adapter<DataItemAdapter.ViewHo
         return dataItemList.size();
     }
 
-    private Drawable getDrawableFromAsset(String name) throws IOException
-    {
-        Drawable drawable = null;
-
-        InputStream inputStream = context.getResources().getAssets().open(name);
-        drawable = Drawable.createFromStream(inputStream, null);
-
-        return drawable;
-    }
+//    private Drawable getDrawableFromAsset(String name) throws IOException
+//    {
+//        Drawable drawable = null;
+//
+//        InputStream inputStream = context.getResources().getAssets().open(name);
+//        drawable = Drawable.createFromStream(inputStream, null);
+//
+//        return drawable;
+//    }
 
 
 }
