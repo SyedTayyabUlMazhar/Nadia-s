@@ -2,7 +2,9 @@ package com.example.android.data.recyclerView;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.ThemedSpinnerAdapter;
 import android.widget.Toast;
 
 import com.example.android.data.DetailActivity;
@@ -27,6 +30,7 @@ public class DataItemAdapter extends RecyclerView.Adapter<DataItemAdapter.ViewHo
 
     public static final String ITEM_ID = "ITEM_ID";
     public static final String ITEM = "ITEM";
+    public static int layoutId;
 
     public static class ViewHolder extends RecyclerView.ViewHolder
     {
@@ -38,8 +42,17 @@ public class DataItemAdapter extends RecyclerView.Adapter<DataItemAdapter.ViewHo
         {
             super(itemView);
 
-            this.menuItemImage = itemView.findViewById(R.id.data_item_imageView);
-            this.menuItemName = itemView.findViewById(R.id.data_item_textViewItemName);
+            if(DataItemAdapter.layoutId==R.layout.data_item)
+            {
+                this.menuItemImage = itemView.findViewById(R.id.data_item_imageView);
+                this.menuItemName = itemView.findViewById(R.id.data_item_textViewItemName);
+            }
+            else
+            {
+                this.menuItemImage = itemView.findViewById(R.id.data_item_grid_imageView);
+                this.menuItemName = itemView.findViewById(R.id.data_item_grid_textViewItemName);
+            }
+
             this.view = itemView;
         }
     }
@@ -60,7 +73,11 @@ public class DataItemAdapter extends RecyclerView.Adapter<DataItemAdapter.ViewHo
 
         LayoutInflater layoutInflater = LayoutInflater.from(context);
 
-        View itemView = layoutInflater.inflate(R.layout.data_item, viewGroup, false);
+        SharedPreferences setting = PreferenceManager.getDefaultSharedPreferences(context);
+        boolean grid = setting.getBoolean(context.getString(R.string.pref_display_grid), false);
+        this.layoutId = grid ? R.layout.data_item_grid : R.layout.data_item;
+
+        View itemView = layoutInflater.inflate(layoutId, viewGroup, false);
 
         DataItemAdapter.ViewHolder viewHolder = new DataItemAdapter.ViewHolder(itemView);
 
