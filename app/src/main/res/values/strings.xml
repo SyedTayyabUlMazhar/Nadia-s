@@ -19,4 +19,14 @@
     <string name="sign_in">Sign In</string>
     <string name="pref_display_grid">pref_display_grid</string>
     <string name="settings_display_in_grid">Display in grid</string>
+    <string name="action_export">Export</string>
+    <string name="action_import">Import</string>
+    <string name="action_categories">Categories</string>
+    <string-array name="categories">
+        <item>Salads</item>
+        <item>Starters</item>
+        <item>Entrees</item>
+        <item>Desserts</item>
+        <item>Drinks</item>
+    </string-array>
 </resources>
